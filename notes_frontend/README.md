@@ -34,6 +34,7 @@ A modern, minimal React UI for creating, editing, viewing, and deleting personal
 
 - REACT_APP_SUPABASE_URL
 - REACT_APP_SUPABASE_KEY
+- REACT_APP_SITE_URL (optional, used by utils/getURL.js, defaults to http://localhost:3000)
 
 See `.env.example` and `SUPABASE.md`.
 
