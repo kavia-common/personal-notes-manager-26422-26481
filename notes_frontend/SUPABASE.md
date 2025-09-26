@@ -11,10 +11,10 @@ Provide these in a `.env` file at the project root (do not commit secrets). You 
 Create a `notes` table in Supabase with the following columns:
 
 - id: uuid (primary key, default: `uuid_generate_v4()`)
-- title: text
-- content: text
-- created_at: timestamptz (default: `now()`)
-- updated_at: timestamptz (default: `now()`)
+- title: text (not null)
+- content: text (not null)
+- created_at: timestamptz (not null, default: `now()`)
+- updated_at: timestamptz (not null, default: `now()`)
 
 Example SQL:
 
@@ -23,10 +23,10 @@ create extension if not exists "uuid-ossp";
 
 create table public.notes (
   id uuid primary key default uuid_generate_v4(),
-  title text,
-  content text,
-  created_at timestamptz default now(),
-  updated_at timestamptz default now()
+  title text not null,
+  content text not null,
+  created_at timestamptz not null default now(),
+  updated_at timestamptz not null default now()
 );
 
 -- Optional: enable row level security and a permissive policy for anon usage during development
@@ -40,6 +40,19 @@ with check (true);
 ```
 
 For production, tighten RLS policies to your auth model.
+
+## Running SQL via CLI (optional)
+
+If you need to run the SQL from a CLI, ensure you have:
+- psql installed
+- A Postgres connection URI for your Supabase project (Session pooler), e.g. stored in SUPABASE_DB_URL:
+  postgresql://postgres.[PROJECT_REF]:[PASSWORD]@aws-0-us-east-1.pooler.supabase.com:5432/postgres?sslmode=verify-full
+
+Then run one statement at a time:
+psql "$SUPABASE_DB_URL" -c 'create extension if not exists "uuid-ossp";'
+psql "$SUPABASE_DB_URL" -c 'create table public.notes (id uuid primary key default uuid_generate_v4(), title text not null, content text not null, created_at timestamptz not null default now(), updated_at timestamptz not null default now());'
+psql "$SUPABASE_DB_URL" -c 'alter table public.notes enable row level security;'
+psql "$SUPABASE_DB_URL" -c 'create policy "Allow read/write during development" on public.notes for all using (true) with check (true);'
 
 ## Client
 
