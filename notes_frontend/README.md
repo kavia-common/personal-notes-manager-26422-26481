@@ -1,82 +1,57 @@
-# Lightweight React Template for KAVIA
+# Ocean Notes - Notes Frontend
 
-This project provides a minimal React template with a clean, modern UI and minimal dependencies.
+A modern, minimal React UI for creating, editing, viewing, and deleting personal notes, integrated with Supabase.
 
 ## Features
 
-- **Lightweight**: No heavy UI frameworks - uses only vanilla CSS and React
-- **Modern UI**: Clean, responsive design with KAVIA brand styling
-- **Fast**: Minimal dependencies for quick loading times
-- **Simple**: Easy to understand and modify
+- Ocean Professional theme (blue primary, amber accents, soft gradients)
+- Sidebar navigation with search and quick create
+- Notes list and detail editor with autosave-ready UX
+- Smooth transitions, rounded corners, subtle shadows
+- Supabase integration for persistent CRUD
 
-## Getting Started
+## Setup
 
-In the project directory, you can run:
+1. Install dependencies:
+   npm install
 
-### `npm start`
+2. Configure Supabase:
+   - Copy `.env.example` to `.env`
+   - Set `REACT_APP_SUPABASE_URL` and `REACT_APP_SUPABASE_KEY` from your Supabase project
 
-Runs the app in development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+3. Create the `notes` table (see SUPABASE.md for SQL and RLS notes)
 
-### `npm test`
+4. Run:
+   npm start
 
-Launches the test runner in interactive watch mode.
+## Scripts
 
-### `npm run build`
+- npm start - Dev server
+- npm test - Tests
+- npm run build - Production build
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Environment Variables
 
-## Customization
+- REACT_APP_SUPABASE_URL
+- REACT_APP_SUPABASE_KEY
 
-### Colors
+See `.env.example` and `SUPABASE.md`.
 
-The main brand colors are defined as CSS variables in `src/App.css`:
+## Code Structure
 
-```css
-:root {
-  --kavia-orange: #E87A41;
-  --kavia-dark: #1A1A1A;
-  --text-color: #ffffff;
-  --text-secondary: rgba(255, 255, 255, 0.7);
-  --border-color: rgba(255, 255, 255, 0.1);
-}
-```
+- src/supabaseClient.js - Supabase client
+- src/services/notesService.js - Encapsulated CRUD operations
+- src/components/ - UI components
+- src/App.js - Main layout and orchestration
+- src/App.css - Ocean Professional theme styles
 
-### Components
+## Style Guide
 
-This template uses pure HTML/CSS components instead of a UI framework. You can find component styles in `src/App.css`. 
+- Primary: #2563EB
+- Secondary (accent): #F59E0B
+- Error: #EF4444
+- Background: #f9fafb
+- Surface: #ffffff
+- Text: #111827
 
-Common components include:
-- Buttons (`.btn`, `.btn-large`)
-- Container (`.container`)
-- Navigation (`.navbar`)
-- Typography (`.title`, `.subtitle`, `.description`)
-
-## Learn More
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Follow minimalist design with subtle depth and smooth transitions.
